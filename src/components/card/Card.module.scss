@@ -1,0 +1,69 @@
+.card {
+  height: 112px;
+  background-color: #DFE8DF;
+  border-radius: 5px;
+
+  &.active {
+    background-color: #DFE8DF;
+
+    svg {
+      font-size: 18px;
+      color: #55AE59;
+    }
+  }
+
+  &.blocked {
+    background-color: #EEDDDD;
+
+    svg {
+      color: #EA3F3C;
+    }
+  }
+
+  &.expired {
+    background-color: #EEDDDD;
+
+    svg {
+      color: #FC950C;
+    }
+  }
+  
+  
+
+  .body {
+    margin-left: 8px;
+    display: flex;
+    width: 90%;
+    height: 83px;
+    border-bottom: 1px solid #CFD8D0;
+
+    strong {
+      margin-top: 33px;
+      margin-left: 20px;
+      font-size: 16px;
+    }
+
+    img {
+      margin-top: -15px;
+      width: 104px;
+      height: 87px;
+      border-radius: 10%;
+      object-fit: cover;
+    }
+  }
+
+  .footer {
+    margin-left: 8px;
+    display: flex;
+    margin-top: 5px;
+    font-size: 14px;
+    font-weight: 400;
+    align-items: center;
+
+    span {
+      margin-left: 5px;
+      margin-top: 1px;
+    }
+
+  }
+}

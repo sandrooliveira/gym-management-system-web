@@ -1,0 +1,17 @@
+.container {
+  padding: 20px;
+  font-size: 23px;
+  font-weight: lighter;
+  color: #6C7581;
+  margin: 0 auto;
+
+  .cards {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    column-gap: 20px;
+    row-gap: 35px;
+    font-family: sans-serif;
+    padding-top: 30px;
+  }
+}
