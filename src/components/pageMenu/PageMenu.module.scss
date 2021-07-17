@@ -1,0 +1,13 @@
+.container {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  svg {
+    font-size: 20px;
+    cursor: pointer;
+    color: #555555;
+  }
+}

@@ -1,9 +1,13 @@
 import { useState } from 'react';
+import { MdAddCircle, MdExitToApp, MdSettings } from 'react-icons/md';
 
 import classes from './People.module.scss';
 
 import { Card } from '../../components/card/Card';
 import { PageHeader } from '../../components/pageHeader/PageHeader';
+import { PageMenu } from '../../components/pageMenu/PageMenu';
+import { Search } from '../../components/search/Search';
+import { PageTitle } from '../../components/pageTitle/PageTitle';
 
 interface Person {
   name: string;
@@ -48,7 +52,15 @@ export const People = () => {
   return (
     <div className={classes.container}>
 
-      <PageHeader onSearch={onSearchHandler} />
+      <PageHeader>
+        <PageTitle title="Alunos"/>
+
+        <PageMenu>
+          <Search onSearch={onSearchHandler} />
+          <MdSettings />
+          <MdExitToApp />
+        </PageMenu>
+      </PageHeader>
 
       <div className={classes.cards}>
         {people.map(({ name, picture, theme, footerText }: Person) => {

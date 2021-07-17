@@ -1,17 +1,5 @@
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-
-  .options {
+.container {
     display: flex;
-    align-items: center;
-    width: 310px;
     justify-content: space-between;
-
-    svg {
-      font-size: 20px;
-      color: #555555;
-    }
-  }
+    align-items: center;
 }
