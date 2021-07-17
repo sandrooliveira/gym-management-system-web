@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { MdAddCircle, MdExitToApp, MdSettings } from 'react-icons/md';
+import { NavLink } from 'react-router-dom';
 
 import classes from './People.module.scss';
 
@@ -61,6 +62,11 @@ export const People = () => {
           <MdExitToApp />
         </PageMenu>
       </PageHeader>
+
+
+      <div className={classes.addButton}>
+        <NavLink to="/add-person"><MdAddCircle /></NavLink>
+      </div>
 
       <div className={classes.cards}>
         {people.map(({ name, picture, theme, footerText }: Person) => {

@@ -6,8 +6,8 @@ import classes from './Sidebar.module.scss';
 export const Sidebar = () => {
   const location = useLocation();
 
-  const getNavLinkClass = (path: string) => {
-    return path === location.pathname
+  const getNavLinkClass = (path: string[]) => {
+    return path.includes(location.pathname)
       ? `${classes.menu_item} ${classes.active}`
       : classes.menu_item;
   };
@@ -17,14 +17,14 @@ export const Sidebar = () => {
       <div className={classes.content}>
         <div className={classes.logo}>ELITE FITNESS</div>
 
-        <div className={getNavLinkClass("/")}>
+        <div className={getNavLinkClass(["/", "/add-person"])}>
           <FiUser />
-          <NavLink activeClassName={classes.active} exact to="/">Alunos</NavLink>
+          <NavLink exact to="/">Alunos</NavLink>
         </div>
 
-        <div className={getNavLinkClass("/finances")}>
+        <div className={getNavLinkClass(["/finances"])}>
           <FiDollarSign />
-          <NavLink activeClassName={classes.active} to="finances">Financeiro</NavLink>
+          <NavLink to="finances">Financeiro</NavLink>
         </div>
       </div>
     </div >
