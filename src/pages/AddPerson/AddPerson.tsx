@@ -19,11 +19,6 @@ export const AddPerson = () => {
         <div className={classes.container}>
             <PageHeader>
                 <PageTitle title="Novo Aluno" onBackArrowClick={onBackArrowClick} />
-
-                <PageMenu>
-                    <MdSettings />
-                    <MdExitToApp />
-                </PageMenu>
             </PageHeader>
         </div>
     )

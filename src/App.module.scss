@@ -1,3 +1,30 @@
-.content {
-    margin-left: 250px;
+.container {
+
+  .content {
+    margin-left: 250px
+  }
+
+  .drawer {
+    position: fixed;
+    top: 0;
+    right: 250px;
+    z-index: 200;
+  }
+
+  @media (max-width: 991px) {
+    .sidebar {
+      display: none;
+    }
+
+    .content {
+      margin-left: 0px
+    }
+  }
+
+  
+  @media (min-width: 991px) {
+    .drawer {
+      display: none;
+    }
+  }
 }

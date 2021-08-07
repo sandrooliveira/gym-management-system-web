@@ -3,12 +3,12 @@
   align-items: center;
 
   input {
-    font-size: 16px;
+    width: 90%;
     color: #6C7581;
     border: none;
     padding-bottom: 10px;
     background: no-repeat center;
-    background-image: linear-gradient(0deg, #9c27b0 2px, rgba(156, 39, 176, 0) 0), linear-gradient(0deg, #d2d2d2 1px, hsla(0, 0%, 82%, 0) 0);
+    background-image: linear-gradient(0deg, #9c27b0 2px, rgba(156, 39, 176, 0) 0), linear-gradient(0deg, #6C7581 1px, hsla(0, 0%, 82%, 0) 0);
     background-size: 0 100%, 100% 100%;
     transition: background 0s ease-out;
 

@@ -1,13 +1,36 @@
 .container {
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+  .inline_menu {
+  
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .btn_mobile {
+    border: none;
+    display: none;
+
+    svg {
+      font-size: 27px;
+    }
+  }
 
   svg {
     font-size: 20px;
     cursor: pointer;
     color: #555555;
+  }
+
+
+  @media (max-width: 991px) {
+    .btn_mobile {
+      display: block;
+    }
+
+    .inline_menu {
+      display: none;
+    }
   }
 }

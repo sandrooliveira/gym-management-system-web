@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext, useCallback, useEffect } from 'react';
 import { MdAddCircle, MdExitToApp, MdSettings } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
 
@@ -9,8 +9,11 @@ import { PageHeader } from '../../components/pageHeader/PageHeader';
 import { PageMenu } from '../../components/pageMenu/PageMenu';
 import { Search } from '../../components/search/Search';
 import { PageTitle } from '../../components/pageTitle/PageTitle';
+import { DrawerContext } from '../../providers/Drawer';
+import { peopleList } from './people-list';
 
-interface Person {
+
+export interface Person {
   name: string;
   picture: string;
   theme: 'blocked' | 'active' | 'expired';
@@ -18,81 +21,38 @@ interface Person {
 }
 
 export const People = () => {
-  const peopleList: Person[] = [
-    {
-      name: "Aliciana do Carmo Lopes",
-      picture: require('../../assets/images/aliciana.jpg').default,
-      theme: "blocked",
-      footerText: "Acesso Bloqueado"
-    },
-    {
-      name: "André Lopes Reis",
-      picture: require('../../assets/images/face1.png').default,
-      theme: "active",
-      footerText: "Acesso Liberado até 20/07/2021"
-    },
-    {
-      name: "Carmem Lucia Faria",
-      picture: require('../../assets/images/face2.jpg').default,
-      theme: "expired",
-      footerText: "Período de acesso vencido em 20/05/2021",
-    },
-    {
-      name: "Maria Tereza Reis",
-      picture: require('../../assets/images/face3.jpg').default,
-      theme: "expired",
-      footerText: "Período de acesso vencido em 20/05/2021",
-    },
-    {
-      name: "Cíntia do Carmo Lopes",
-      picture: require('../../assets/images/aliciana.jpg').default,
-      theme: "blocked",
-      footerText: "Acesso Bloqueado"
-    },
-    {
-      name: "Anderson Lopes Reis",
-      picture: require('../../assets/images/face1.png').default,
-      theme: "active",
-      footerText: "Acesso Liberado até 20/07/2021"
-    },
-    {
-      name: "Josefa Lucia Faria",
-      picture: require('../../assets/images/face2.jpg').default,
-      theme: "expired",
-      footerText: "Período de acesso vencido em 20/05/2021",
-    },
-    {
-      name: "Cida Tereza Reis",
-      picture: require('../../assets/images/face3.jpg').default,
-      theme: "expired",
-      footerText: "Período de acesso vencido em 20/05/2021",
-    }
-  ]
-
   const [ people, setPeople ] = useState(peopleList);
+  const { isDrawerOpen, setIsDrawerOpen, setSearchFunction } = useContext(DrawerContext);
 
-  const onSearchHandler = (searchedValue: string) => {
-    if (searchedValue === "") {
+  const onMobileMenuClick = () => {
+    setIsDrawerOpen(!isDrawerOpen);
+  }
+
+  const searchHandler = useCallback((searchText: string) => {
+    if (searchText === "" || !searchText) {
       setPeople(peopleList);
     } else {
-      const filteredPeople = people.filter(person => person.name.includes(searchedValue));
+      const filteredPeople = people.filter(person => person.name.includes(searchText));
       setPeople(filteredPeople);
     }
-  }
+  }, [ people ]);
+
+  useEffect(() => {
+    setSearchFunction(() => searchHandler);
+  }, [ setSearchFunction, searchHandler ])
 
   return (
     <div className={classes.container}>
 
       <PageHeader>
-        <PageTitle title="Alunos"/>
+        <PageTitle title="Alunos" />
 
-        <PageMenu>
-          <Search onSearch={onSearchHandler} />
+        <PageMenu mobileMenuClick={onMobileMenuClick}>
+          <Search onSearch={searchHandler} />
           <MdSettings />
           <MdExitToApp />
         </PageMenu>
       </PageHeader>
-
 
       <div className={classes.addButton}>
         <NavLink to="/add-person"><MdAddCircle /></NavLink>
@@ -110,6 +70,6 @@ export const People = () => {
           )
         })}
       </div>
-    </div>
+    </div >
   )
 }
