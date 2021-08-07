@@ -22,28 +22,32 @@ export interface Person {
 
 export const People = () => {
   const [ people, setPeople ] = useState(peopleList);
-  const { isDrawerOpen, setIsDrawerOpen, setSearchFunction } = useContext(DrawerContext);
+  const [ peopleFiltered, setPeopleFiltered ] = useState<Person[]>([]);
+  const { isDrawerOpen, setIsDrawerOpen, searchTerm, setShowSearch } = useContext(DrawerContext);
 
   const onMobileMenuClick = () => {
     setIsDrawerOpen(!isDrawerOpen);
   }
 
   const searchHandler = useCallback((searchText: string) => {
-    if (searchText === "" || !searchText) {
-      setPeople(peopleList);
+    if (searchText === "") {
+      setPeopleFiltered(people);
     } else {
       const filteredPeople = people.filter(person => person.name.includes(searchText));
-      setPeople(filteredPeople);
+      setPeopleFiltered(filteredPeople);
     }
   }, [ people ]);
 
   useEffect(() => {
-    setSearchFunction(() => searchHandler);
-  }, [ setSearchFunction, searchHandler ])
+    searchHandler(searchTerm);
+  }, [ searchTerm, searchHandler ])
+
+  useEffect(() => {
+    setShowSearch(true);
+  }, [ setShowSearch ]);
 
   return (
     <div className={classes.container}>
-
       <PageHeader>
         <PageTitle title="Alunos" />
 
@@ -59,7 +63,7 @@ export const People = () => {
       </div>
 
       <div className={classes.cards}>
-        {people.map(({ name, picture, theme, footerText }: Person) => {
+        {peopleFiltered.map(({ name, picture, theme, footerText }: Person) => {
           return (
             <Card
               key={name}

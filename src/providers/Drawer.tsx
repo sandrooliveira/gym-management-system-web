@@ -3,18 +3,21 @@ import React, { ReactNode, useState } from 'react';
 interface DrawerContextData {
   isDrawerOpen: boolean,
   setIsDrawerOpen(isOpen: boolean): void,
-  searchFunction?: Function,
-  setSearchFunction(searchFunction?: Function): void
+  searchTerm: string,
+  setSearchTerm(searchFunction: string): void,
+  showSearch: boolean,
+  setShowSearch(showSearch: boolean): void
 }
 
 export const DrawerContext = React.createContext<DrawerContextData>({} as DrawerContextData);
 
 export const DrawerProvider: React.FC<ReactNode> = props => {
-  const [searchFunction, setSearchFunction] = useState(undefined);
+  const [ showSearch, setShowSearch  ] = useState(false);
+  const [ searchTerm, setSearchTerm ] = useState("");
   const [ isDrawerOpen, setIsDrawerOpen ] = useState(false);
 
   return (
-    <DrawerContext.Provider value={{isDrawerOpen, setIsDrawerOpen, searchFunction, setSearchFunction }}>
+    <DrawerContext.Provider value={{ isDrawerOpen, setIsDrawerOpen, searchTerm, setSearchTerm, showSearch, setShowSearch }}>
       {props.children}
     </DrawerContext.Provider>
   );

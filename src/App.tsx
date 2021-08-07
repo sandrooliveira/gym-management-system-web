@@ -14,10 +14,10 @@ import { FiUser, FiDollarSign } from 'react-icons/fi';
 import { MdSettings, MdExitToApp } from 'react-icons/md';
 
 function App() {
-  const { isDrawerOpen, setIsDrawerOpen, searchFunction } = useContext(DrawerContext);
+  const { isDrawerOpen, setIsDrawerOpen, setSearchTerm, showSearch } = useContext(DrawerContext);
 
   const onSearchHandler = (searchedValue: string) => {
-    searchFunction && searchFunction(searchedValue);
+    setSearchTerm(searchedValue);
     setIsDrawerOpen(false);
   }
 
@@ -27,16 +27,11 @@ function App() {
 
   let drawer;
   let backdrop;
-  let search;
-
-  if (!!searchFunction) {
-    search = <Search onSearch={onSearchHandler} />
-  }
 
   if (isDrawerOpen) {
     drawer = <div className={classes.drawer}>
       <Sidebar>
-        {search}
+        {showSearch && <Search onSearch={onSearchHandler} />}
 
         <SideBarItem
           icon={FiUser}
